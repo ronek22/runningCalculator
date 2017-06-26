@@ -1,5 +1,6 @@
 from sys import exit
 
+#return pace in minutes
 def stringTempo(pace):
 	tabPace = pace.split(':')
 	minut = int(tabPace[0])
@@ -7,13 +8,24 @@ def stringTempo(pace):
 	tempo = minut + sec
 	return tempo
 
+# return time from string to minutes(float)
+def stringTime(time):
+	tabTime = time.split(':')
+	hour = int(tabTime[0])*60
+	minut = int(tabTime[1])
+	sec = float(tabTime[2])/60
+	time = hour + minut + sec
+	return time
+
+
 def pauseEnd():
 	raw_input("Press any key to exit.")
 
-print "\nRunning Calculator" 
+print "\nRunning Calculator"
 print "=" * 50
 print "1. Long run distance calculation."
-print "2. Exit."
+print "2. Distance & Time -> Pace."
+print "3. Exit"
 print "-" * 50
 print "New functions will be added soon.\n"
 
@@ -29,7 +41,7 @@ or shouldn't have more than 25% of weekly training volume.
 	dystans = float(raw_input("How many kilometres do you run in this week?\n>> "))
 	daneTempa = raw_input("What is your long run pace?\n>> ")
 	tempo = stringTempo(daneTempa)
-	
+
 	s = (dystans/4)/(0.75)
 	czas = s*tempo
 
@@ -43,7 +55,27 @@ or shouldn't have more than 25% of weekly training volume.
 		pauseEnd()
 
 elif odp == 2:
-	print "End with Calculations\nThank you :)."
+	print "Distance & Time -> Pace"
+	print "=" * 50
+
+	dystans = float(raw_input("Distance[km]: "))
+	daneCzas = raw_input("Time[hh:mm:ss]: ")
+	czas = stringTime(daneCzas)
+
+	pace = czas/dystans
+	minutes = int(pace)
+	sec = int((pace - minutes)*60)
+
+	print ""
+	if sec > 9:
+		print "If you ran %d km in %s, your pace will be %d:%d min/km" % (dystans,daneCzas,minutes,sec)
+	else:
+		print "If you ran %d km in %s, your pace will be %d:0%d min/km" % (dystans,daneCzas,minutes,sec)
+
+	pauseEnd()
+	exit(0)
+elif odp == 3:
+	print "End with Calculations\nSee u later :)."
 	pauseEnd()
 	exit(0)
 else:
