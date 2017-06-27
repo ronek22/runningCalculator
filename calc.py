@@ -8,6 +8,12 @@ def stringTempo(pace):
 	tempo = minut + sec
 	return tempo
 
+def print0(x):
+	if x <= 9:
+		return "0%d" % x
+	else:
+		return "%d" % x
+
 # return time from string to minutes(float)
 def stringTime(time):
 	tabTime = time.split(':')
@@ -17,6 +23,11 @@ def stringTime(time):
 	time = hour + minut + sec
 	return time
 
+def minutes2Time(minutes):
+	hours = int(minutes/60)
+	minut = int(minutes%60) # reszta z dzielenia przez godzine to minuty
+	seconds = (minutes - int(minutes))*60
+	print "%s:%s:%s" % (print0(hours),print0(minut),print0(seconds))
 
 def pauseEnd():
 	raw_input("Press any key to exit.")
@@ -25,6 +36,7 @@ print "\nRunning Calculator"
 print "=" * 50
 print "1. Long run distance calculation."
 print "2. Distance & Time -> Pace."
+print "3. Pace & Distance -> Time"
 print "3. Exit"
 print "-" * 50
 print "New functions will be added soon.\n"
@@ -74,7 +86,24 @@ elif odp == 2:
 
 	pauseEnd()
 	exit(0)
+
 elif odp == 3:
+	print "Pace & Distance -> Time"
+	print "=" * 50
+
+	daneTempa = raw_input("Pace[min/km]: ")
+	tempo = stringTempo(daneTempa)
+	dystans = float(raw_input("Distance[km]: "))
+
+
+	czas = tempo*dystans # wynik w minutach
+	minutes2Time(czas)
+	# print "Time = %f\n" % czas
+	pauseEnd()
+	exit(0)
+
+
+elif odp == 4:
 	print "End with Calculations\nSee u later :)."
 	pauseEnd()
 	exit(0)
