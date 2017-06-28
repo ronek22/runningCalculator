@@ -1,5 +1,5 @@
 from sys import exit
-
+import os
 #return pace in minutes
 def stringTempo(pace):
 	tabPace = pace.split(':')
@@ -69,20 +69,27 @@ or shouldn't have more than 25% of weekly training volume.
 elif odp == 2:
 	print "Distance & Time -> Pace"
 	print "=" * 50
+	run = True
 
-	dystans = float(raw_input("Distance[km]: "))
-	daneCzas = raw_input("Time[hh:mm:ss]: ")
-	czas = stringTime(daneCzas)
+	while run :
+		os.system('CLS')
+		dystans = float(raw_input("Distance[km]: "))
+		daneCzas = raw_input("Time[hh:mm:ss]: ")
+		czas = stringTime(daneCzas)
 
-	pace = czas/dystans
-	minutes = int(pace)
-	sec = int((pace - minutes)*60)
+		pace = czas/dystans
+		minutes = int(pace)
+		sec = int((pace - minutes)*60)
 
-	print ""
-	if sec > 9:
-		print "If you ran %d km in %s, your pace will be %d:%d min/km" % (dystans,daneCzas,minutes,sec)
-	else:
-		print "If you ran %d km in %s, your pace will be %d:0%d min/km" % (dystans,daneCzas,minutes,sec)
+		print ""
+		if sec > 9:
+			print "If you ran %.2f km in %s, your pace will be %d:%d min/km" % (dystans,daneCzas,minutes,sec)
+		else:
+			print "If you ran %.2f km in %s, your pace will be %d:0%d min/km" % (dystans,daneCzas,minutes,sec)
+
+		test = raw_input("If you want to exit, type T + Enter\n> ")
+		if test == 'T':
+			run = False
 
 	pauseEnd()
 	exit(0)
@@ -90,14 +97,21 @@ elif odp == 2:
 elif odp == 3:
 	print "Pace & Distance -> Time"
 	print "=" * 50
+	run = True
 
-	daneTempa = raw_input("Pace[min/km]: ")
-	tempo = stringTempo(daneTempa)
-	dystans = float(raw_input("Distance[km]: "))
+	while run :
+		os.system('CLS')
+		daneTempa = raw_input("Pace[min/km]: ")
+		tempo = stringTempo(daneTempa)
+		dystans = float(raw_input("Distance[km]: "))
 
+		czas = tempo*dystans # wynik w minutach
+		minutes2Time(czas)
 
-	czas = tempo*dystans # wynik w minutach
-	minutes2Time(czas)
+		test = raw_input("If you want to exit, type T + Enter\n>> ")
+		if test == 'T':
+			run = False
+
 	# print "Time = %f\n" % czas
 	pauseEnd()
 	exit(0)
