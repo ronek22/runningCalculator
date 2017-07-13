@@ -1,5 +1,10 @@
 from sys import exit
+from vdot import vdotCalc
 import os
+
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+
 #return pace in minutes
 def stringTempo(pace):
 	tabPace = pace.split(':')
@@ -30,96 +35,91 @@ def minutes2Time(minutes):
 	print "%s:%s:%s" % (print0(hours),print0(minut),print0(seconds))
 
 def pauseEnd():
-	raw_input("Press any key to exit.")
+	raw_input("Press any key to back to menu.")
 
-print "\nRunning Calculator"
-print "=" * 50
-print "1. Long run distance calculation."
-print "2. Distance & Time -> Pace."
-print "3. Pace & Distance -> Time"
-print "3. Exit"
-print "-" * 50
-print "New functions will be added soon.\n"
+def menu():
+	while True:
+		cls()
+		print "\nRunning Calculator"
+		print "=" * 50
+		print "1. Long run distance calculation."
+		print "2. Distance & Time -> Pace."
+		print "3. Pace & Distance -> Time"
+		print "4. VDOT Calculations & Show Paces"
+		print "5. Exit"
+		print "-" * 50
+		print "New functions will be added soon.\n"
 
-odp = int(raw_input("What do you want to calculate?\n>> "))
+		odp = int(raw_input("What do you want to calculate?\n>> "))
 
-if odp == 1:
-	print """
+		if odp == 1:
+			cls()
+			print """
 Long run is run in comfortable pace,
 It maintain your endurance,
-According to Jack Daniels program, run shouldn't last longer than 120 minutes
+According to Jack Daniels program,
+run shouldn't last longer than 120 minutes
 or shouldn't have more than 25% of weekly training volume.
-	"""
-	dystans = float(raw_input("How many kilometres do you run in this week?\n>> "))
-	daneTempa = raw_input("What is your long run pace?\n>> ")
-	tempo = stringTempo(daneTempa)
+			"""
+			dystans = float(raw_input("How many kilometres do you run in this week?\n>> "))
+			daneTempa = raw_input("What is your long run pace?\n>> ")
+			tempo = stringTempo(daneTempa)
 
-	s = (dystans/4)/(0.75)
-	czas = s*tempo
+			s = (dystans/4)/(0.75)
+			czas = s*tempo
 
-	if czas > 120:
-		print "Run in comfortable way for 2 hours."
-		pauseEnd()
-		exit(0)
-	else:
-		print "Your long run in this week should be: %dkm" % s
-		print "Probably your run will takes: %d minutes" % czas
-		pauseEnd()
+			if czas > 120:
+				print "Run in comfortable way for 2 hours."
+				pauseEnd()
+			else:
+				print "Your long run in this week should be: %dkm" % s
+				print "Probably your run will takes: %d minutes" % czas
+				pauseEnd()
 
-elif odp == 2:
-	print "Distance & Time -> Pace"
-	print "=" * 50
-	run = True
+		elif odp == 2:
+			cls()
+			print "Distance & Time -> Pace"
+			print "=" * 50
 
-	while run :
-		os.system('CLS')
-		dystans = float(raw_input("Distance[km]: "))
-		daneCzas = raw_input("Time[hh:mm:ss]: ")
-		czas = stringTime(daneCzas)
+			dystans = float(raw_input("Distance[km]: "))
+			daneCzas = raw_input("Time[hh:mm:ss]: ")
+			czas = stringTime(daneCzas)
 
-		pace = czas/dystans
-		minutes = int(pace)
-		sec = int((pace - minutes)*60)
+			pace = czas/dystans
+			minutes = int(pace)
+			sec = int((pace - minutes)*60)
 
-		print ""
-		if sec > 9:
-			print "If you ran %.2f km in %s, your pace will be %d:%d min/km" % (dystans,daneCzas,minutes,sec)
+			print ""
+			if sec > 9:
+				print "If you ran %.2f km in %s, your pace will be %d:%d min/km" % (dystans,daneCzas,minutes,sec)
+			else:
+				print "If you ran %.2f km in %s, your pace will be %d:0%d min/km" % (dystans,daneCzas,minutes,sec)
+			pauseEnd()
+
+		elif odp == 3:
+			cls()
+			print "Pace & Distance -> Time"
+			print "=" * 50
+
+			daneTempa = raw_input("Pace[min/km]: ")
+			tempo = stringTempo(daneTempa)
+			dystans = float(raw_input("Distance[km]: "))
+
+			czas = tempo*dystans # wynik w minutach
+			minutes2Time(czas)
+
+			pauseEnd()
+
+		elif odp == 4:
+			cls()
+			vdotCalc()
+			pauseEnd()
+
+		elif odp == 5:
+			print "End with Calculations\nSee u later :)."
+			exit(0)
 		else:
-			print "If you ran %.2f km in %s, your pace will be %d:0%d min/km" % (dystans,daneCzas,minutes,sec)
+			print "End with Calculations\nSee u later :)."
+			exit(0)
 
-		test = raw_input("If you want to exit, type T + Enter\n> ")
-		if test == 'T':
-			run = False
-
-	pauseEnd()
-	exit(0)
-
-elif odp == 3:
-	print "Pace & Distance -> Time"
-	print "=" * 50
-	run = True
-
-	while run :
-		os.system('CLS')
-		daneTempa = raw_input("Pace[min/km]: ")
-		tempo = stringTempo(daneTempa)
-		dystans = float(raw_input("Distance[km]: "))
-
-		czas = tempo*dystans # wynik w minutach
-		minutes2Time(czas)
-
-		test = raw_input("If you want to exit, type T + Enter\n>> ")
-		if test == 'T':
-			run = False
-
-	# print "Time = %f\n" % czas
-	pauseEnd()
-	exit(0)
-
-
-elif odp == 4:
-	print "End with Calculations\nSee u later :)."
-	pauseEnd()
-	exit(0)
-else:
-	exit(0)
+menu()
