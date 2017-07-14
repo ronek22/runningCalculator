@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 vdot = pd.read_csv('daniels_table_races.csv', delimiter=',',index_col = 'Params')
+pacesTab = pd.read_csv('paces.csv', delimiter=',', index_col='Params')
 
 
 def compareTimMin(time,timeList,distance):
@@ -63,13 +64,5 @@ def vdotCalc():
     timeTab,ind = compareTimMin(time,vdot[distDic[distance]], distance)
     print "NEAREST TIME: ", timeTab
     print "YOUR VDOT IS: ", ind
-
-
-
-
-    # print vdot['10km'][30s
-
-    # df = vdot.ix[56]
-    # print df
-
-    # Next, print training paces
+    print "PACES:\n"
+    print pacesTab.ix[ind]
