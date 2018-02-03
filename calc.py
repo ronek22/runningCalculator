@@ -32,13 +32,6 @@ def string_tempo(pace):
     return tempo
 
 
-def print0(number):
-    '''add leading 0 to number string, if number is less than 10'''
-    if number <= 9:
-        return "0%d" % number
-    else:
-        return "%d" % number
-
 def string_time(time):
     '''return time from string to minutes(float)'''
     tab_time = time.split(':')
@@ -54,7 +47,7 @@ def minutes2time(minutes):
     hours = int(minutes / 60)
     minut = int(minutes % 60)  # reszta z dzielenia przez godzine to minuty
     seconds = (minutes - int(minutes)) * 60
-    print "%s:%s:%s" % (print0(hours), print0(minut), print0(seconds))
+    print "%02d:%02d:%02d" % (hours, minut, seconds)
 
 
 def pause_end():
@@ -86,7 +79,7 @@ def menu():
             else:
                 print "Your long run in this week should be: %dkm" % lsd
                 print "Probably your run will takes: %d minutes" % czas
-            
+
         elif odp == 2:
             print "Distance & Time -> Pace"
             print "=" * 50
