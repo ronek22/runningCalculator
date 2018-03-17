@@ -4,3 +4,6 @@ Application allows us to calculate:
 * pace (from time & distance)
 * time (from distance & pace) calculate (pace, time,long run, vdot, paces for vdot)
 * table with paces according to Jack Daniels book, depending on latest race time
+
+# Test online
+You can test it online [here.](https://repl.it/@ronek22/runningCalculator)
