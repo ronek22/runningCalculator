@@ -1,0 +1,6 @@
+numexpr==2.6.5
+numpy==1.14.5
+pandas==0.23.2
+python-dateutil==2.7.3
+pytz==2018.5
+six==1.11.0
