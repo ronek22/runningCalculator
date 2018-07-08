@@ -28,8 +28,7 @@ def enter_data_for_time_calc():
     pace = input("Pace[min/km]: ")
     distance = float(input("Distance[km]: "))
 
-    time = pace_to_number(pace) * distance  # wynik w minutach
-    time_to_string(time)
+    calc_time(pace, distance)
 
 
 def enter_into_vdot_mode():
@@ -45,16 +44,16 @@ def close_program():
 def menu():
     """ Main function of program, at startup
     it displays menu, waits for input and controls flow of application"""
+    menu_options = [enter_long_run_data, enter_data_for_pace_calc, enter_data_for_time_calc, enter_into_vdot_mode,
+                    close_program]
     while True:
         cls()
-
         print(MENU_TEXT)
-        menu_options = [enter_long_run_data, enter_data_for_pace_calc, enter_data_for_time_calc, enter_into_vdot_mode, close_program]
-        odp = int(input("What do you want to calculate?\n>> "))
+        choose = int(input("What do you want to calculate?\n>> "))
         cls()
 
-        if 1 <= odp <= 5:
-            menu_options[odp-1]()
+        if 1 <= choose <= 5:
+            menu_options[choose-1]()
         else:
             print("That option doesnt exist. Try again.")
 

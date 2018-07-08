@@ -5,7 +5,7 @@ def pace_to_number(pace):
     """return from pace in string to pace in minutes"""
     minutes, seconds = pace.split(':')
     minutes, seconds = int(minutes), float(seconds) / 60
-    return minutes + seconds
+    return int(minutes) + float(seconds) / 60
 
 
 def time_to_number(time):

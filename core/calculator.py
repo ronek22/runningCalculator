@@ -17,8 +17,7 @@ def long_run(mileage, pace):
 
 
 def calc_pace(time, distance):
-    time_minutes = time_to_number(time)
-    pace = time_minutes / distance
+    pace = time_to_number(time) / distance
     minutes = int(pace)
     seconds = int((pace - minutes) * 60)
 
@@ -28,3 +27,6 @@ def calc_pace(time, distance):
     else:
         print("\nIf you ran {0:.2f} km in {1}, your pace will be {2}:0{3} min/km".format(distance, time, minutes, seconds))
 
+
+def calc_time(pace, distance):
+    return time_to_string(pace_to_number(pace) * distance)
