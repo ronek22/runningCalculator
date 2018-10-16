@@ -1,0 +1,8 @@
+language: python
+
+addons:
+  sonarcloud:
+    organization: "ronek22-github" # the key of the org you chose at step #3
+ 
+script:
+  - sonar-scanner
