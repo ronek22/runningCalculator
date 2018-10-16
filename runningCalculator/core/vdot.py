@@ -2,7 +2,8 @@
 Required files: daniels_table_races.csv & paces.csv"""
 
 import pandas as pd
-from core.constants import *
+
+from core.constants import DISTANCES
 
 VDOT = pd.read_csv('data/daniels_table_races.csv', delimiter=',', index_col='Params')
 PACES_TAB = pd.read_csv('data/paces.csv', delimiter=',', index_col='Params')

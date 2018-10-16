@@ -1,5 +1,6 @@
-from core.calculator import *
-from core.constants import *
+from core.calculator import long_run, calc_pace, calc_time
+from core.constants import LONG_RUN_TEXT, MENU_TEXT
+from core.utils import cls, pause_end
 
 
 def enter_long_run_data():

@@ -1,4 +1,4 @@
-from core.utils import *
+from core.utils import time_to_number, time_to_string, pace_to_number
 
 
 def long_run(mileage, pace):
