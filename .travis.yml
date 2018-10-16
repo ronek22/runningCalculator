@@ -10,5 +10,5 @@ addons:
 
  
 script:
-  - pytest --cov=runningCalculator tests/
+  - pytest --cov-report xml:coverage.xml --cov=runningCalculator tests/
   - sonar-scanner
