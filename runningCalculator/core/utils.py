@@ -1,6 +1,6 @@
 import os
 from datetime import timedelta
-from core.constants import DIST_DIC, DISTANCES
+from .constants import DIST_DIC, DISTANCES
 
 
 def pace_to_number(pace):

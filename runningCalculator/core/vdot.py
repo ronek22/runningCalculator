@@ -2,7 +2,6 @@
 Required files: daniels_table_races.csv & paces.csv"""
 
 import pandas as pd
-from core.constants import DIST_DIC
 from core.utils import get_distance, get_time
 
 pd.set_option('display.expand_frame_repr', False)
@@ -41,7 +40,7 @@ def vdot_calc():
 
     distance = get_distance()
     time = get_time()
-    coefficient = nearest(time, DIST_DIC[distance])
+    coefficient = nearest(time, distance)
 
     print_results(coefficient)
 
