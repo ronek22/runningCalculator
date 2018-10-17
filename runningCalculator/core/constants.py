@@ -26,3 +26,15 @@ DISTANCES = """
     8. Half Marathon
     9. Marathon
 """
+
+DIST_DIC = {
+    1: '1500m',
+    2: '1600m',
+    3: '3km',
+    4: '3200m',
+    5: '5km',
+    6: '10km',
+    7: '15km',
+    8: 'HM',
+    9: 'M'
+}

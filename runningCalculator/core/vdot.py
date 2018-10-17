@@ -2,39 +2,34 @@
 Required files: daniels_table_races.csv & paces.csv"""
 
 import pandas as pd
+from datetime import timedelta
+from core.constants import DISTANCES, DIST_DIC
 
-from core.constants import DISTANCES
+pd.set_option('display.expand_frame_repr', False)
 
-VDOT = pd.read_csv('data/daniels_table_races.csv', delimiter=',', index_col='Params')
+
+def prepare_table():
+    """Read the csv table and convert all time columns to timedelta"""
+    timetable = pd.read_csv('data/daniels_table_races.csv', delimiter=',', index_col='Params')
+    for column in list(timetable):
+        timetable[column] = timetable[column].apply(pd.Timedelta)
+    return timetable
+
+
+def duration(time):
+    """Convert time from string to timedelta"""
+    h, m, s = list(map(int, time.split(":")))
+    return timedelta(hours=h, minutes=m, seconds=s)
+
+
+def nearest(target, distance):
+    """Return index(VDOT coefficient) of closest time in given distance"""
+    row = min(VDOT[distance], key=lambda x: abs(x - target))
+    return VDOT.loc[VDOT[distance] == row].index.item()
+
+
+VDOT = prepare_table()
 PACES_TAB = pd.read_csv('data/paces.csv', delimiter=',', index_col='Params')
-
-
-def compare_tim_min(time, time_list, distance):
-    """Return nearest time from vdot table to time given by user"""
-    test = len(time.split(':'))
-
-    if test == 2 and distance <= 7:
-        list2 = [float('.'.join(i.split(':'))) for i in time_list]
-        time2 = float('.'.join(time.split(':')))
-        out = str(min(list2, key=lambda x: abs(x - time2)))
-        out = ':'.join(out.split('.'))
-        if len(out) == 4:
-            out += '0'
-        ind = VDOT.iloc[:, distance - 1][VDOT.iloc[:, distance - 1] == out].index.tolist()[0]
-        return out, ind
-    elif test == 2 and distance > 7:
-        print("Error: time must be in format(hh:mm:ss)")
-        return "", ""
-    elif test == 3 and distance > 7:
-        list2 = [int(''.join(i.split(':'))) for i in time_list]
-        time2 = int(''.join(time.split(':')))
-        out = str(min(list2, key=lambda x: abs(x - time2)))
-        out = out[:1] + ':' + out[1:3] + ':' + out[3:]
-        ind = VDOT.iloc[:, distance - 1][VDOT.iloc[:, distance - 1] == out].index.tolist()[0]
-        return out, ind
-    elif test == 3 and distance <= 7:
-        print("Error: time must be in format(mm:ss)")
-        return "", ""
 
 
 def vdot_calc():
@@ -44,21 +39,15 @@ def vdot_calc():
     print("Choose distance:" + DISTANCES)
     distance = int(input("\n>> "))
 
-    dist_dic = {
-        1: '1500m',
-        2: '1600m',
-        3: '3km',
-        4: '3200m',
-        5: '5km',
-        6: '10km',
-        7: '15km',
-        8: 'HM',
-        9: 'M'
-    }
 
+
+    # TODO: ADD SOME VALIDATION
     time = input("Provide your time: ")
+    time = duration(time)
 
-    time_tab, ind = compare_tim_min(time, VDOT[dist_dic[distance]], distance)
+    ind = nearest(time, DIST_DIC[distance])
+
+    # time_tab, ind = compare_tim_min(time, VDOT[dist_dic[distance]], distance)
     print("YOUR VDOT IS: ", ind,"\n")
     print('{:~^20}'.format('PACES'))
     print(PACES_TAB.ix[ind].to_frame())
