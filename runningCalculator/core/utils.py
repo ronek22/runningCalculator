@@ -1,4 +1,6 @@
 import os
+from datetime import timedelta
+from core.constants import DIST_DIC, DISTANCES
 
 
 def pace_to_number(pace):
@@ -20,6 +22,22 @@ def time_to_string(time):
     minutes = int(time % 60)
     seconds = (time - int(time)) * 60
     print("%02d:%02d:%02d" % (hours, minutes, seconds))
+
+
+def duration(time):
+    """Convert time from string to timedelta"""
+    h, m, s = list(map(int, time.split(":")))
+    return timedelta(hours=h, minutes=m, seconds=s)
+
+
+def get_distance():
+    distance = int(input("Choose distance:" + DISTANCES + "\n>> "))
+    return DIST_DIC[distance]
+
+
+def get_time():
+    time = input("Provide your time: ")
+    return duration(time)
 
 
 def pause_end():

@@ -2,8 +2,8 @@
 Required files: daniels_table_races.csv & paces.csv"""
 
 import pandas as pd
-from datetime import timedelta
-from core.constants import DISTANCES, DIST_DIC
+from core.constants import DIST_DIC
+from core.utils import get_distance, get_time
 
 pd.set_option('display.expand_frame_repr', False)
 
@@ -16,16 +16,20 @@ def prepare_table():
     return timetable
 
 
-def duration(time):
-    """Convert time from string to timedelta"""
-    h, m, s = list(map(int, time.split(":")))
-    return timedelta(hours=h, minutes=m, seconds=s)
-
-
 def nearest(target, distance):
     """Return index(VDOT coefficient) of closest time in given distance"""
     row = min(VDOT[distance], key=lambda x: abs(x - target))
     return VDOT.loc[VDOT[distance] == row].index.item()
+
+
+def print_results(ind):
+    print("YOUR VDOT IS: ", ind, "\n")
+    print('{:~^20}'.format('PACES'))
+    print(PACES_TAB.ix[ind].to_frame())
+    print("")
+    print('{:~^20}'.format('RACING TIMES'))
+    print(VDOT.ix[ind].to_frame().T)
+    print("")
 
 
 VDOT = prepare_table()
@@ -33,25 +37,11 @@ PACES_TAB = pd.read_csv('data/paces.csv', delimiter=',', index_col='Params')
 
 
 def vdot_calc():
-    # Race time depends on VDOT
-
     print('{:~^20}'.format('VDOT Table'))
-    print("Choose distance:" + DISTANCES)
-    distance = int(input("\n>> "))
 
+    distance = get_distance()
+    time = get_time()
+    coefficient = nearest(time, DIST_DIC[distance])
 
+    print_results(coefficient)
 
-    # TODO: ADD SOME VALIDATION
-    time = input("Provide your time: ")
-    time = duration(time)
-
-    ind = nearest(time, DIST_DIC[distance])
-
-    # time_tab, ind = compare_tim_min(time, VDOT[dist_dic[distance]], distance)
-    print("YOUR VDOT IS: ", ind,"\n")
-    print('{:~^20}'.format('PACES'))
-    print(PACES_TAB.ix[ind].to_frame())
-    print("")
-    print('{:~^20}'.format('RACING TIMES'))
-    print(VDOT.ix[ind].to_frame().T)
-    print("")
