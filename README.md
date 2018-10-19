@@ -1,4 +1,6 @@
 [![sonar](https://sonarcloud.io/api/project_badges/quality_gate?project=ronek22_runningCalculator)](https://sonarcloud.io/dashboard?id=ronek22_runningCalculator)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/8da171e47d7d47e95c0a/maintainability)](https://codeclimate.com/github/ronek22/runningCalculator/maintainability)
 # runningCalculator
 Application allows us to calculate:
 * How long should be long run depending on weekly mileage (formula from Jack Daniels book)
