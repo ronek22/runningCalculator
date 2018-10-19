@@ -6,3 +6,4 @@ pytz==2018.5
 six==1.11.0
 pytest
 pytest-cov
+coverage
