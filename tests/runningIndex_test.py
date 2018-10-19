@@ -1,6 +1,6 @@
 import pytest
 
-from core.runningIndex import RunningIndex
+from runningCalculator.core.runningIndex import RunningIndex
 
 
 class TestRunningIndex:

@@ -8,6 +8,7 @@ pd.set_option('display.expand_frame_repr', False)
 
 class RunningIndex:
     def __init__(self):
+        # TODO: Change this to use pathlib library, because it's deprecated
         self.data_folder = os.path.abspath(os.path.dirname(__file__))
         self.VDOT = self.__prepare_table()
         self.PACES_TAB = pd.read_csv(os.path.join(self.data_folder, '..\data\paces.csv'), delimiter=',', index_col='Params')
