@@ -54,4 +54,12 @@ def test_time_to_string(time_str, time_fl, capfd):
     assert out == time_str + "\n"
 
 
+def test_duration():
+    assert duration("01:15:25") == timedelta(hours=1, minutes=15, seconds=25)
+
+# modules with input require some complex mocking, so i do it later
+
+
+
+
 

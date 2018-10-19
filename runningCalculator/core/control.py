@@ -1,6 +1,6 @@
 from core.calculator import long_run, calc_pace, calc_time
 from core.constants import LONG_RUN_TEXT, MENU_TEXT
-from core.utils import cls, pause_end
+from core.utils import cls, pause_end, get_distance, get_time
 
 
 def enter_long_run_data():
@@ -32,9 +32,16 @@ def enter_data_for_time_calc():
     calc_time(pace, distance)
 
 
-def enter_into_vdot_mode():
-    from core.vdot import vdot_calc
-    vdot_calc()
+def enter_data_to_running_index():
+    print('{:~^20}'.format('VDOT Table'))
+    return get_distance(), get_time()
+
+
+def enter_into_running_index_mode():
+    from core.runningIndex import RunningIndex
+    analysis = RunningIndex()
+    distance, time = enter_data_to_running_index()
+    analysis.calculate(distance, time)
 
 
 def close_program():
@@ -45,8 +52,8 @@ def close_program():
 def menu():
     """ Main function of program, at startup
     it displays menu, waits for input and controls flow of application"""
-    menu_options = [enter_long_run_data, enter_data_for_pace_calc, enter_data_for_time_calc, enter_into_vdot_mode,
-                    close_program]
+    menu_options = [enter_long_run_data, enter_data_for_pace_calc, enter_data_for_time_calc,
+                    enter_into_running_index_mode, close_program]
     while True:
         cls()
         print(MENU_TEXT)
