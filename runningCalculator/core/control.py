@@ -9,7 +9,7 @@ def enter_long_run_data():
     distance = float(input("How many kilometres do you run in this week?\n>> "))
     pace = input("What is your long run pace?\n>> ")
 
-    long_run(distance, pace)
+    print(long_run(distance, pace))
 
 
 def enter_data_for_pace_calc():
@@ -19,7 +19,7 @@ def enter_data_for_pace_calc():
     distance = float(input("Distance[km]: "))
     time = input("Time[hh:mm:ss]: ")
 
-    calc_pace(time, distance)
+    print(calc_pace(time, distance))
 
 
 def enter_data_for_time_calc():
