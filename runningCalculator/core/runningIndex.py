@@ -11,11 +11,11 @@ class RunningIndex:
         # TODO: Change this to use pathlib library, because it's deprecated
         self.data_folder = os.path.abspath(os.path.dirname(__file__))
         self.VDOT = self.__prepare_table()
-        self.PACES_TAB = pd.read_csv(os.path.join(self.data_folder, '..\data\paces.csv'), delimiter=',', index_col='Params')
+        self.PACES_TAB = pd.read_csv(os.path.join(self.data_folder, '..//data//paces.csv'), delimiter=',', index_col='Params')
 
     def __prepare_table(self):
         """Read the csv table and convert all time columns to timedelta"""
-        timetable = pd.read_csv(os.path.join(self.data_folder, '..\data\daniels_table_races.csv'), delimiter=',', index_col='Params')
+        timetable = pd.read_csv(os.path.join(self.data_folder, '..//data//daniels_table_races.csv'), delimiter=',', index_col='Params')
         for column in list(timetable):
             timetable[column] = timetable[column].apply(pd.Timedelta)
         return timetable
