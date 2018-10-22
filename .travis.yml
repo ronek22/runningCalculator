@@ -11,7 +11,7 @@ addons:
     organization: "ronek22-github"
 
 script:
-  - pytest --cov-config .coveragerc --cov-report xml:coverage.xml --cov=runningCalculator tests/
+  - pytest --cov-config .coveragerc --cov-report xml:coverage.xml --cov=running_calculator tests/
   - sonar-scanner
 
 

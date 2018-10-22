@@ -1,3 +1,4 @@
+"""This script contains utility functions used in other scripts"""
 import os
 from datetime import timedelta
 from .constants import DIST_DIC, DISTANCES
@@ -26,16 +27,20 @@ def time_to_string(time):
 
 def duration(time):
     """Convert time from string to timedelta"""
-    h, m, s = list(map(int, time.split(":")))
-    return timedelta(hours=h, minutes=m, seconds=s)
+    hour, minute, second = list(map(int, time.split(":")))
+    return timedelta(hours=hour, minutes=minute, seconds=second)
 
 
 def get_distance():
+    """Function for handle distance input by user
+    and return mapped data from DIST_DIC dictionary"""
     distance = int(input("Choose distance:" + DISTANCES + "\n>> "))
     return DIST_DIC[distance]
 
 
 def get_time():
+    """Function for handle time input by user
+    and return it in timedelta format"""
     time = input("Provide your time: ")
     return duration(time)
 

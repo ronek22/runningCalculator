@@ -1,3 +1,4 @@
+"""Script for storing constants variables"""
 MENU_TEXT = """\nRunning Calculator
 {0}
 1. Long run distance calculation.

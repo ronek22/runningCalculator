@@ -1,6 +1,6 @@
 [run]
 omit =
         tests/*
-        runningCalculator/runningCalculator.py
+        running_calculator/running_calculator.py
         *__init__*
-        runningCalculator/core/control.py
+        running_calculator/core/control.py

@@ -1,6 +1,6 @@
 import pytest
 
-from runningCalculator.core.calculator import long_run, calc_pace, calc_time
+from running_calculator.core.calculator import long_run, calc_pace, calc_time
 
 
 @pytest.mark.parametrize(

@@ -1,7 +1,7 @@
 import pytest
 from pytest import approx
 
-from runningCalculator.core.utils import *
+from running_calculator.core.utils import *
 
 
 @pytest.mark.parametrize(
