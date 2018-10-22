@@ -1,6 +1,6 @@
 language: python
 python: "3.6"
-
+cache: pip
 install:
   - pip install -r requirements.txt
 
@@ -8,17 +8,9 @@ addons:
   sonarcloud:
     organization: "ronek22-github"
 
-
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
 script:
-  - coverage report -m
   - pytest --cov-config .coveragerc --cov-report xml:coverage.xml --cov=runningCalculator tests/
   - sonar-scanner
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 
 
