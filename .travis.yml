@@ -12,7 +12,8 @@ addons:
 
 script:
   - pytest --cov-config .coveragerc --cov-report xml:coverage.xml --cov=running_calculator tests/
+  - pytest --cov-config .coveragerc --cov=running_calculator tests/
   - sonar-scanner
 
-
-
+after_success:
+  - codecov
