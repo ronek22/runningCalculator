@@ -13,6 +13,6 @@ class TestRunningIndex:
         ]
     )
     def test_nearest(self, target, distance, index):
-        assert TestRunningIndex.analyzer.nearest(target, distance) == index
+        assert self.analyzer.nearest(target, distance) == index
 
 
