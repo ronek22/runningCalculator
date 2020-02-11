@@ -1,7 +1,8 @@
 import pytest
 from pytest import approx
+from datetime import timedelta
 
-from running_calculator.core.utils import *
+from running_calculator.core.utils import pace_to_number, time_to_number, time_to_string, duration
 
 
 @pytest.mark.parametrize(
@@ -50,7 +51,7 @@ def test_time_to_number_with_corrupted_input(badtime_str):
 def test_time_to_string(time_str, time_fl, capfd):
     minutes = time_fl
     time_to_string(minutes)
-    out, err = capfd.readouterr()
+    out, _ = capfd.readouterr()
     assert out == time_str + "\n"
 
 

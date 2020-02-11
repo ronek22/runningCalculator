@@ -37,5 +37,5 @@ def test_calc_pace_with_added_zero():
 
 def test_calc_time(capfd):
     calc_time("03:30", 10)
-    out, err = capfd.readouterr()
+    out, _ = capfd.readouterr()
     assert out == "00:35:00\n"
